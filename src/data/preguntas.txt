@@ -1,0 +1,37 @@
+-
+Int Num1 = 2;
+Int Num2 = 6;
+Int Resultado;
+Resultado = num1 + num2;
+System.out.println (“La suma es de: ” + Resultado);
+--
+8
+---
+9
+8
+7,9
+-
+Double Nota1 = 3,5;
+Double Nota2 =3,8;
+Doble Nota3 = 4,7;
+Double 	Promedio;
+If ((Nota1+Nota2+Nota3)/3); {
+System.out.println (“El promedio es de: ” +Promedio);
+}
+--
+4,0
+---
+14,7
+34,8
+4,0
+-
+If (Nota >= 3,0 || Nota<=5,0); {
+System.out.println (”Aprobó”);
+} else {
+System.out.println (“Reprobó”);
+}
+--
+Verdadero 
+---
+Verdadero 
+Falso

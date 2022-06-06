@@ -1,13 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package game;
 
-/**
- *
- * @author dairo
- */
 public class Juego {
-    
+
+    private final Nivel nivel;
+    private final Pregunta[] preguntas;
+
+    public Juego(Nivel nivel, Pregunta[] preguntas) {
+        this.nivel = nivel;
+        this.preguntas = preguntas;
+    }
+
+    public Nivel getNivel() {
+        return nivel;
+    }
+
+    public Pregunta[] getPreguntas() {
+        return preguntas;
+    }
+
 }
