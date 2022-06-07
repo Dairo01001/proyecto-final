@@ -17,7 +17,7 @@ public class Pregunta {
     }
 
     public String getPregunta() {
-        return pregunta;
+        return pregunta.replaceAll(";", ";\n");
     }
 
     public TipoPregunta getTipo() {
