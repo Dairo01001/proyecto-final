@@ -1,6 +1,5 @@
 package main;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class Repasar extends JPanel {
@@ -10,6 +9,10 @@ public class Repasar extends JPanel {
     }
 
     private void init() {
-        add(new JButton("Repasar"));
+        
+        add(new Button("Condicionales"));
+        add(new Button("Ciclos"));
+        add(new Button("La madre!"));
+        add(new Button("Como Chupar!"));
     }
 }

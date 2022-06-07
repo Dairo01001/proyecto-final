@@ -5,9 +5,11 @@ import util.Read;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -43,6 +45,7 @@ public class Jugar extends JPanel implements ActionListener {
         siguiente.addActionListener(this);
         
         pregunta = new JTextArea();
+        pregunta.setEditable(false);
         pregunta.setFont(Ventana.FONT);
         JPanel containerOpciones = new JPanel();
         ButtonGroup group = new ButtonGroup();
@@ -53,13 +56,16 @@ public class Jugar extends JPanel implements ActionListener {
             containerOpciones.add(opciones[i]);
         }
         
+        JPanel containerShowInfo = new JPanel();
+        containerShowInfo.setLayout(new BoxLayout(containerShowInfo, BoxLayout.PAGE_AXIS));
         showInfo = new JLabel("Correctas: " + correctas + " || Incorrectas: " + incorrectas);
         showInfo.setFont(Ventana.FONT);
+        containerShowInfo.add(showInfo);
         
         add(containerOpciones, BorderLayout.SOUTH);
         add(pregunta, BorderLayout.CENTER);
         add(siguiente, BorderLayout.EAST);
-        add(showInfo, BorderLayout.NORTH);
+        add(containerShowInfo, BorderLayout.NORTH);
         
         showPregunta();
     }
@@ -86,18 +92,28 @@ public class Jugar extends JPanel implements ActionListener {
         return "";
     }
     
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (index < infoPreguntas.length) {
             String selected = selectOpcion();
             if (!"".equals(selected)) {
-                if (infoPreguntas[index].respuestaCorrecta(selected)) {
+                if (infoPreguntas[index - 1].respuestaCorrecta(selected)) {
                     correctas++;
                 }
                 incorrectas++;
                 
                 showInfo.setText("Correctas: " + correctas + " || Incorrectas: " + incorrectas);
                 showPregunta();
+            } else {
+                JOptionPane.showMessageDialog(null, "Escoje una opcion!"); 
+            }
+        } else {
+            String  nombre = JOptionPane.showInputDialog(null, "Escribe tu nombre");
+            String grupo = JOptionPane.showInputDialog(null, "Ingresa tu grupo");
+            JOptionPane.showMessageDialog(null, nombre + " tu puntaje es de " + correctas);
+            if(Read.setPuntaje(nombre, grupo, correctas)) {
+                JOptionPane.showMessageDialog(null, "Puntaje Guardado!");
             }
         }
     }

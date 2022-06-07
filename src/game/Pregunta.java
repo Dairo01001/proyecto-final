@@ -37,6 +37,7 @@ public class Pregunta {
     }
 
     public boolean respuestaCorrecta(String resp) {
+        System.out.println(respuesta + " == " + resp);
         return respuesta.equals(resp);
     }
 

@@ -7,7 +7,7 @@ import javax.swing.JTabbedPane;
 
 public class Ventana extends JFrame {
     
-    public static final Font FONT = new Font("Courier New", Font.BOLD, 14);
+    public static final Font FONT = new Font("Courier New", Font.PLAIN, 14);
 
     private final int ALTO = 600;
     private final int ANCHO = 800;
@@ -28,6 +28,7 @@ public class Ventana extends JFrame {
 
     private void initComponents() {
         JTabbedPane container = new JTabbedPane();
+        container.setFont(FONT);
         
         container.add("Jugar", new Jugar());
         container.add("Puntajes", new Puntajes());

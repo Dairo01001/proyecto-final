@@ -1,4 +1,6 @@
-3
 Dairo,1,100
 Toquica,3,500
 Angie,3,1000
+Dairo,Garcia,0
+Dairo,1,0
+Dairo,1,1

@@ -2,14 +2,19 @@ package util;
 
 import game.Pregunta;
 import game.TipoPregunta;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Read {
 
-    private static final String URI = Constantes.DIR + Constantes.SEPARATOR + "src" + Constantes.SEPARATOR + "data" + Constantes.SEPARATOR;
+    public static final String URI = Constantes.DIR + Constantes.SEPARATOR + "src" + Constantes.SEPARATOR + "data" + Constantes.SEPARATOR;
 
     public static Pregunta[] getPreguntas(int num) {
         Pregunta preguntas[] = new Pregunta[num];
@@ -59,23 +64,34 @@ public class Read {
         return preguntas;
     }
 
-    public static String[][] getPuntajes() {
-        String[][] puntajes;
+    public static ArrayList<String[]> getPuntajes() {
+        ArrayList<String[]> puntajes = new ArrayList<>();
 
         try {
             File doc = new File(URI + "puntajes.txt");
             try ( Scanner sc = new Scanner(doc)) {
-                puntajes = new String[Integer.parseInt(sc.nextLine())][3];
-                int index = 0;
                 while (sc.hasNextLine()) {
-                    puntajes[index++] = sc.nextLine().split(",");
+                    puntajes.add(sc.nextLine().split(","));
                 }
             }
             
             return puntajes;
         } catch (FileNotFoundException e) {
         }
-        
-        return new String[1][1];
+       return puntajes;
+    }
+    
+    public static boolean setPuntaje(String nombre, String grupo, int puntaje)  {
+        try {
+            FileWriter flWriter = new FileWriter(URI + "puntajes.txt", true);
+            try (BufferedWriter bfWriter = new BufferedWriter(flWriter)) {
+                bfWriter.write(nombre + "," + grupo + "," + puntaje + "\n");
+            }
+            
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(Read.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }
